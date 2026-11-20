@@ -239,4 +239,3 @@ async def test_cache_manager_invalid_json_handling():
     assert await cm.get_resources("invalid_json") is None
     assert await cm.get_anomalies("invalid_json") is None
     assert await cm.get_recommendations("invalid_json") is None
-

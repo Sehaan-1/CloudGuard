@@ -47,7 +47,9 @@ async def test_dashboard_service_cost_by_service_and_trend():
     assert isinstance(by_svc, dict)
     assert len(by_svc) > 0
 
-    trend = await svc.get_cost_trend("mock", date(2026, 8, 1), date(2026, 8, 10), granularity="daily")
+    trend = await svc.get_cost_trend(
+        "mock", date(2026, 8, 1), date(2026, 8, 10), granularity="daily"
+    )
     assert isinstance(trend, dict)
     assert len(trend) > 0
 
@@ -59,16 +61,24 @@ async def test_dashboard_service_cost_by_service_and_trend():
 @pytest.mark.asyncio
 async def test_dashboard_service_anomalies_and_filtering():
     svc = DashboardService()
-    anomalies = await svc.get_anomalies("mock", date(2026, 8, 1), date(2026, 8, 15), method="composite")
+    anomalies = await svc.get_anomalies(
+        "mock", date(2026, 8, 1), date(2026, 8, 15), method="composite"
+    )
     assert isinstance(anomalies, list)
 
-    anomalies_zscore = await svc.get_anomalies("mock", date(2026, 8, 1), date(2026, 8, 15), method="zscore", threshold=2.0)
+    anomalies_zscore = await svc.get_anomalies(
+        "mock", date(2026, 8, 1), date(2026, 8, 15), method="zscore", threshold=2.0
+    )
     assert isinstance(anomalies_zscore, list)
 
-    anomalies_iqr = await svc.get_anomalies("mock", date(2026, 8, 1), date(2026, 8, 15), method="iqr", threshold=1.5)
+    anomalies_iqr = await svc.get_anomalies(
+        "mock", date(2026, 8, 1), date(2026, 8, 15), method="iqr", threshold=1.5
+    )
     assert isinstance(anomalies_iqr, list)
 
-    anomalies_rolling = await svc.get_anomalies("mock", date(2026, 8, 1), date(2026, 8, 15), method="rolling", threshold=2.0)
+    anomalies_rolling = await svc.get_anomalies(
+        "mock", date(2026, 8, 1), date(2026, 8, 15), method="rolling", threshold=2.0
+    )
     assert isinstance(anomalies_rolling, list)
 
     if anomalies:

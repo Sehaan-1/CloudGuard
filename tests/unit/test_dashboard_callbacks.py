@@ -53,7 +53,9 @@ def test_overview_callbacks_invocation(dash_test_app: dash.Dash):
 
 def test_cost_callbacks_invocation(dash_test_app: dash.Dash):
     cost_explorer_cb = _get_callback_fn(dash_test_app, "cost-sunburst-graph.figure")
-    sunburst_fig, region_fig, stacked_fig, table_data = cost_explorer_cb("mock", "2026-08-01", "2026-08-10", 0)
+    sunburst_fig, region_fig, stacked_fig, table_data = cost_explorer_cb(
+        "mock", "2026-08-01", "2026-08-10", 0
+    )
     assert sunburst_fig is not None
     assert region_fig is not None
     assert stacked_fig is not None

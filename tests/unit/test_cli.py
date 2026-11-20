@@ -256,4 +256,3 @@ def test_cli_scan_all_types():
     )
     assert result.exit_code == 0
     assert "Underutilized Instances" in result.output or "Untagged Assets" in result.output
-
