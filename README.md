@@ -1,13 +1,3 @@
----
-title: CloudGuard FinOps Platform
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 8050
-pinned: false
-license: mit
----
-
 # CloudGuard
 
 **Intelligent Cloud Cost Optimizer & FinOps Observability Platform**
