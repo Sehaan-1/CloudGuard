@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ report.title }}</title>
+<style>
+@page {
+    size: a4 portrait;
+    margin: 12mm 12mm 12mm 12mm;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 9pt;
+    line-height: 1.4;
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+.avoid-break {
+    page-break-inside: avoid;
+}
+
+.header-table {
+    width: 100%;
+    border-bottom: 2px solid #0ea5e9;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+}
+
+.logo-title h1 {
+    font-size: 18pt;
+    margin: 0;
+    color: #0f172a;
+    font-weight: bold;
+}
+
+.logo-title .brand {
+    color: #0ea5e9;
+}
+
+.logo-title p {
+    margin: 2px 0 0 0;
+    color: #64748b;
+    font-size: 8.5pt;
+}
+
+.meta-box {
+    text-align: right;
+    font-size: 8pt;
+    color: #475569;
+}
+
+.badge {
+    padding: 2px 6px;
+    font-weight: bold;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+}
+
+.badge-provider {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.badge-urgent, .badge-critical {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.badge-high {
+    background-color: #ffedd5;
+    color: #c2410c;
+}
+
+.badge-medium {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.badge-low {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.section-title {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+    margin-top: 14px;
+    margin-bottom: 10px;
+}
+
+.kpi-container {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.kpi-table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+.kpi-card {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 8px 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.kpi-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.kpi-value {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+.kpi-value.savings {
+    color: #10b981;
+}
+
+.kpi-value.waste {
+    color: #ef4444;
+}
+
+.kpi-value.anomalies {
+    color: #f59e0b;
+}
+
+.chart-box {
+    text-align: center;
+    margin: 8px 0;
+    background-color: #ffffff;
+    border: 1px solid #f1f5f9;
+    padding: 4px;
+}
+
+.chart-img {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    font-size: 8pt;
+}
+
+table.data-table th {
+    background-color: #f1f5f9;
+    color: #334155;
+    text-align: left;
+    padding: 5px 6px;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    font-weight: bold;
+}
+
+table.data-table td {
+    padding: 5px 6px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #1e293b;
+}
+
+table.data-table tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.footer {
+    margin-top: 18px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 7pt;
+    color: #94a3b8;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table class="header-table">
+    <tr>
+        <td class="logo-title" style="vertical-align: top;">
+            <h1>Cloud<span class="brand">Guard</span> FinOps Report</h1>
+            <p>{{ report.title }}</p>
+        </td>
+        <td class="meta-box" style="vertical-align: top;">
+            <div><strong>Generated:</strong> {{ generated_date_str }}</div>
+            <div><strong>Period:</strong> {{ period_start_str }} to {{ period_end_str }}</div>
+            <div style="margin-top: 3px;"><span class="badge badge-provider">{{ provider_name }}</span></div>
+        </td>
+    </tr>
+</table>
+
+<div class="section-title">Executive Summary</div>
+
+<div class="kpi-container">
+    <table class="kpi-table">
+        <tr>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Total Period Spend</div>
+                <div class="kpi-value">${{ "%.2f"|format(report.summary.total_cost) }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Avg Daily Spend</div>
+                <div class="kpi-value">${{ "%.2f"|format(report.summary.average_daily_cost) }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Monthly Waste</div>
+                <div class="kpi-value waste">${{ "%.2f"|format(report.scan_result.total_waste_monthly) }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Projected Savings</div>
+                <div class="kpi-value savings">${{ "%.2f"|format(total_projected_savings) }}</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Total Records</div>
+                <div class="kpi-value">{{ report.summary.record_count }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Anomalies Flagged</div>
+                <div class="kpi-value anomalies">{{ report.anomalies|length }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Recommendations</div>
+                <div class="kpi-value savings">{{ report.recommendations|length }}</div>
+            </td>
+            <td class="kpi-card" style="width: 25%;">
+                <div class="kpi-label">Scanned Resources</div>
+                <div class="kpi-value">{{ report.scan_result.total_resources_scanned }}</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-title">Cost Breakdown & Spending Trends</div>
+
+{% if charts.cost_breakdown_pie %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.cost_breakdown_pie }}" class="chart-img" alt="Cost Breakdown by Service" />
+</div>
+{% endif %}
+
+{% if charts.cost_trend_line %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.cost_trend_line }}" class="chart-img" alt="Daily Cost Trend" />
+</div>
+{% endif %}
+
+<div class="avoid-break">
+    <div style="font-weight: bold; font-size: 8.5pt; margin-top: 8px; margin-bottom: 3px;">Top Spending Services</div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 40%;">Service</th>
+                <th class="text-right" style="width: 30%;">Total Spend</th>
+                <th class="text-right" style="width: 30%;">% of Spend</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for svc, amt in report.summary.top_services %}
+            <tr>
+                <td><strong>{{ svc }}</strong></td>
+                <td class="text-right">${{ "%.2f"|format(amt) }}</td>
+                <td class="text-right">
+                    {% if report.summary.total_cost > 0 %}
+                    {{ "%.1f"|format((amt / report.summary.total_cost) * 100) }}%
+                    {% else %}
+                    0.0%
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            {% if not report.summary.top_services %}
+            <tr>
+                <td colspan="3" class="text-center" style="color: #94a3b8;">No service line items found</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% if charts.cost_by_region_bar %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.cost_by_region_bar }}" class="chart-img" alt="Cost by Region" />
+</div>
+{% endif %}
+
+<div class="page-break"></div>
+
+<div class="section-title">Spending Anomaly Detection</div>
+
+{% if charts.anomaly_timeline %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.anomaly_timeline }}" class="chart-img" alt="Anomaly Timeline" />
+</div>
+{% endif %}
+
+<div class="avoid-break">
+    <div style="font-weight: bold; font-size: 8.5pt; margin-top: 6px; margin-bottom: 3px;">Detected Anomaly Events</div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Date</th>
+                <th style="width: 25%;">Service</th>
+                <th class="text-right" style="width: 15%;">Expected</th>
+                <th class="text-right" style="width: 15%;">Actual</th>
+                <th class="text-right" style="width: 15%;">Deviation</th>
+                <th class="text-center" style="width: 15%;">Severity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in report.anomalies %}
+            <tr>
+                <td>{{ a.date }}</td>
+                <td><strong>{{ a.service }}</strong></td>
+                <td class="text-right">${{ "%.2f"|format(a.expected_cost) }}</td>
+                <td class="text-right" style="color: #ef4444; font-weight: bold;">${{ "%.2f"|format(a.actual_cost) }}</td>
+                <td class="text-right">{{ "%.1f"|format(a.deviation_score) }}&sigma;</td>
+                <td class="text-center">
+                    <span class="badge badge-{{ a.severity.value }}">{{ a.severity.value }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+            {% if not report.anomalies %}
+            <tr>
+                <td colspan="6" class="text-center" style="color: #10b981; font-weight: bold; padding: 10px;">No cost anomalies detected in this period.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="section-title">Infrastructure Waste & Utilization</div>
+
+{% if charts.utilization_heatmap %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.utilization_heatmap }}" class="chart-img" alt="Utilization Heatmap" />
+</div>
+{% endif %}
+
+<div class="avoid-break">
+    <div style="font-weight: bold; font-size: 8.5pt; margin-top: 6px; margin-bottom: 3px;">Flagged Inefficient Resources</div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Resource Name</th>
+                <th style="width: 15%;">Type</th>
+                <th style="width: 15%;">Status</th>
+                <th class="text-right" style="width: 15%;">Utilization</th>
+                <th class="text-right" style="width: 15%;">Monthly Cost</th>
+                <th style="width: 15%;">Region</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in flagged_resources %}
+            <tr>
+                <td><strong>{{ r.name }}</strong></td>
+                <td>{{ r.type.value }}</td>
+                <td><span class="badge badge-high">{{ r.status.value }}</span></td>
+                <td class="text-right">{{ "%.1f"|format(r.utilization_pct) }}%</td>
+                <td class="text-right">${{ "%.2f"|format(r.monthly_cost) }}</td>
+                <td>{{ r.region }}</td>
+            </tr>
+            {% endfor %}
+            {% if not flagged_resources %}
+            <tr>
+                <td colspan="6" class="text-center" style="color: #10b981; font-weight: bold; padding: 8px;">No idle or orphaned infrastructure detected.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section-title">Actionable Recommendations</div>
+
+{% if charts.savings_waterfall %}
+<div class="chart-box avoid-break">
+    <img src="{{ charts.savings_waterfall }}" class="chart-img" alt="Savings Potential" />
+</div>
+{% endif %}
+
+<div class="avoid-break">
+    <div style="font-weight: bold; font-size: 8.5pt; margin-top: 6px; margin-bottom: 3px;">Prioritized Optimization Plan</div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 12%;">Priority</th>
+                <th style="width: 32%;">Title / Description</th>
+                <th style="width: 20%;">Resource</th>
+                <th class="text-right" style="width: 18%;">Est. Savings</th>
+                <th class="text-right" style="width: 18%;">Confidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rec in report.recommendations %}
+            <tr>
+                <td>
+                    <span class="badge badge-{{ rec.priority.value }}">{{ rec.priority.value }}</span>
+                </td>
+                <td>
+                    <strong>{{ rec.title }}</strong><br/>
+                    <span style="font-size: 7pt; color: #64748b;">{{ rec.description }}</span>
+                </td>
+                <td>{{ rec.resource_name or rec.resource_id }}</td>
+                <td class="text-right" style="color: #10b981; font-weight: bold;">
+                    ${{ "%.2f"|format(rec.estimated_savings) }}
+                </td>
+                <td class="text-right">{{ "%.0f"|format(rec.confidence * 100) }}%</td>
+            </tr>
+            {% endfor %}
+            {% if not report.recommendations %}
+            <tr>
+                <td colspan="5" class="text-center" style="color: #10b981; font-weight: bold; padding: 10px;">All resources optimized. No pending recommendations.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="section-title">Appendix & Governance</div>
+<div class="avoid-break" style="font-size: 8pt; color: #475569;">
+    <p><strong>Report ID:</strong> {{ report.id }}</p>
+    <p><strong>Generated By:</strong> CloudGuard Intelligent FinOps Engine v1.0</p>
+    <p><strong>Methodology:</strong> Multi-strategy anomaly detection (Z-Score, IQR, Rolling Windows) combined with real-time heuristic rule scans across compute, storage, and networking layers.</p>
+</div>
+
+<div class="footer">
+    CloudGuard &bull; Confidential Financial Optimization Report &bull; Generated on {{ generated_date_str }}
+</div>
+
+</body>
+</html>

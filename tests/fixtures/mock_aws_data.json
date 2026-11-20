@@ -1,0 +1,43 @@
+{
+  "DimensionKeyValues": [],
+  "NextPageToken": null,
+  "ResultsByTime": [
+    {
+      "TimePeriod": {
+        "Start": "2026-08-25",
+        "End": "2026-08-26"
+      },
+      "Total": {},
+      "Groups": [
+        {
+          "Keys": ["Amazon Elastic Compute Cloud - Compute", "us-east-1"],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "210.45",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": ["Amazon Simple Storage Service", "us-east-1"],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "34.12",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": ["Amazon Relational Database Service", "us-east-1"],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "78.90",
+              "Unit": "USD"
+            }
+          }
+        }
+      ],
+      "Estimated": false
+    }
+  ]
+}

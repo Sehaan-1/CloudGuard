@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "nextLink": null,
+    "columns": [
+      { "name": "Cost", "type": "Number" },
+      { "name": "UsageDate", "type": "Number" },
+      { "name": "ServiceName", "type": "String" },
+      { "name": "ResourceLocation", "type": "String" },
+      { "name": "ResourceId", "type": "String" },
+      { "name": "Currency", "type": "String" }
+    ],
+    "rows": [
+      [145.20, 20260825, "Virtual Machines", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Compute/virtualMachines/app-vm-01", "USD"],
+      [42.50, 20260825, "Storage", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Storage/storageAccounts/proddata01", "USD"],
+      [89.10, 20260825, "SQL Database", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Sql/servers/proddb/databases/maindb", "USD"],
+      [150.80, 20260826, "Virtual Machines", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Compute/virtualMachines/app-vm-01", "USD"],
+      [43.10, 20260826, "Storage", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Storage/storageAccounts/proddata01", "USD"],
+      [89.10, 20260826, "SQL Database", "eastus", "/subscriptions/0000-0000-0000/resourceGroups/prod-rg/providers/Microsoft.Sql/servers/proddb/databases/maindb", "USD"]
+    ]
+  }
+}
