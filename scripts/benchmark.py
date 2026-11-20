@@ -151,17 +151,25 @@ def main() -> None:
         help="Record counts to benchmark",
     )
     parser.add_argument(
+        "--records",
+        type=int,
+        default=None,
+        help="Single record count to benchmark (alias for --counts)",
+    )
+    parser.add_argument(
         "--workers", type=int, default=None, help="Worker count for ParallelProcessor"
     )
     args = parser.parse_args()
+
+    counts = [args.records] if args.records is not None else args.counts
 
     print("=" * 60)
     print("CloudGuard FinOps Parallel Processing Performance Benchmark")
     print("=" * 60)
     print(f"CPU Cores: {os.cpu_count()}")
-    print(f"Test Sizes: {args.counts}")
+    print(f"Test Sizes: {counts}")
 
-    results = run_benchmark(args.counts, max_workers=args.workers)
+    results = run_benchmark(counts, max_workers=args.workers)
     print_markdown_table(results)
 
 

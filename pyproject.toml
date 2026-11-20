@@ -90,4 +90,6 @@ testpaths = ["tests"]
 asyncio_mode = "auto"
 filterwarnings = [
     "ignore::DeprecationWarning",
+    "ignore:.*Event loop is closed.*:RuntimeWarning",
+    "ignore::pytest.PytestUnraisableExceptionWarning",
 ]
