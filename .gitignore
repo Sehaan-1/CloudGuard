@@ -33,7 +33,7 @@ env/
 
 .env
 .env.local
-data/
+/data/
 *.sqlite
 *.db
 
