@@ -59,8 +59,10 @@ dev = [
     "ruff>=0.6.0",
     "mypy>=1.11.0",
     "pypdf>=4.0.0",
+    "xhtml2pdf>=0.2.16",
 ]
 pdf = [
+    "xhtml2pdf>=0.2.16",
     "weasyprint>=62.0",
 ]
 postgres = [
