@@ -1,6 +1,5 @@
 ---
 title: CloudGuard FinOps Platform
-emoji: 🛡️
 colorFrom: blue
 colorTo: indigo
 sdk: docker
@@ -9,7 +8,7 @@ pinned: false
 license: mit
 ---
 
-# CloudGuard 🛡️
+# CloudGuard
 
 **Intelligent Cloud Cost Optimizer & FinOps Observability Platform**
 
@@ -25,7 +24,7 @@ CloudGuard is an enterprise-grade FinOps platform that unifies multi-cloud infra
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -63,7 +62,7 @@ flowchart TD
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Multi-Cloud Ingestion Strategy**: Unified data model across AWS, Azure, and zero-config deterministic Mock providers.
 - **Sub-5s Analytics Performance**: Parallel multiprocessing processor capable of crunching **100,000+ line-item records in under 5 seconds**.
@@ -76,7 +75,7 @@ flowchart TD
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Installation
 
@@ -102,7 +101,7 @@ cloudguard dashboard --host 0.0.0.0 --port 8050
 
 ---
 
-## 💻 CLI Commands
+## CLI Commands
 
 CloudGuard provides a Rich terminal CLI with interactive formatters:
 
@@ -125,7 +124,7 @@ cloudguard report --provider mock --format pdf --output reports/finops-audit.pdf
 
 ---
 
-## 🐳 Docker & Docker Compose
+## Docker & Docker Compose
 
 Deploy the production stack (CloudGuard Dashboard, PostgreSQL 16, Redis 7):
 
@@ -149,7 +148,7 @@ docker run -d -p 8050:8050 cloudguard:latest
 
 ---
 
-## 🔌 REST API Endpoints
+## REST API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -162,7 +161,7 @@ docker run -d -p 8050:8050 cloudguard:latest
 
 ---
 
-## 🧪 Testing & Verification
+## Testing & Verification
 
 Run the comprehensive test suite:
 
@@ -179,6 +178,6 @@ python scripts/benchmark.py --records 100000
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for details.
