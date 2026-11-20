@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: cloudguard
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEFAULT_PROVIDER
+        value: mock
+      - key: PORT
+        value: 8050

@@ -19,6 +19,7 @@ license: mit
 [![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Docker Ready](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple)](LICENSE)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Sehaan-1/CloudGuard)
 
 CloudGuard is an enterprise-grade FinOps platform that unifies multi-cloud infrastructure analytics (AWS, Azure, Mock), audits cloud waste (idle compute, orphaned storage, untagged assets), detects spending anomalies via statistical machine learning heuristics, and delivers actionable rightsizing recommendations with projected ROI.
 
