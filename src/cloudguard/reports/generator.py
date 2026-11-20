@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import io
 from pathlib import Path
 from typing import Any
 
@@ -131,9 +130,8 @@ class PDFReportGenerator:
 
                 with open(out_p, "wb") as pdf_file:
                     pisa_status = pisa.CreatePDF(
-                        src=io.StringIO(html_content),
+                        src=html_content,
                         dest=pdf_file,
-                        encoding="utf-8",
                     )
                     if pisa_status.err:
                         raise ReportGenerationError(
